@@ -4,7 +4,7 @@ class CreateExercises < ActiveRecord::Migration[6.1]
       t.string :name
       t.integer :reps
       t.integer :sets
-      t.string :notes
+      t.text :notes
       t.integer :weight
       t.belongs_to :workout
       t.timestamps

@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2021_08_04_063755) do
     t.string "name"
     t.integer "reps"
     t.integer "sets"
-    t.string "notes"
+    t.text "notes"
     t.integer "weight"
     t.integer "workout_id"
     t.datetime "created_at", precision: 6, null: false
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 2021_08_04_063755) do
   create_table "workouts", force: :cascade do |t|
     t.string "name"
     t.string "day"
-    t.string "notes"
+    t.text "notes"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
