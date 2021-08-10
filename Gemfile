@@ -19,3 +19,4 @@ gem 'sqlite3'
 gem 'rack' #(for http requests)
 gem 'rack-cors' #(for enabling cross-origin resource sharing)
 gem 'shotgun' #(alternative to using rackup command so you don't have to restart server every time you make a change)
+gem "byebug", "~> 11.1"

@@ -33,9 +33,7 @@ class Application
         workout_hash = JSON.parse(req.body.read) #looks for the data that the front end sends to the server then parses it.
         workout = Workout.create(workout_hash)
 
-        #return [200, {"Content-Type" => "application/json"}, [{message: "new workout created", workouts: workout}.to_json]]
-
-        resp.write({message: "workout successfully created", workouts: workout})
+        resp.write({message: "workout successfully created", workout: workout}.to_json)
         resp.status = 200
 
       elsif req.path.match(/workouts/) && req.get?
@@ -48,7 +46,7 @@ class Application
         else
           workout = Workout.find_by_path(req.path)
 
-          resp.write({message: "workout successfully updated", workouts: workout}.to_json)
+          resp.write({message: "workout successfully returned", workout: workout, exercises: workout.exercises}.to_json)
           resp.status = 200
         end
 
