@@ -50,31 +50,41 @@ class Application
           resp.status = 200
         end
 
-      elsif req.path.match(/exercises/) && req.patch?
-        exercise = Exercise.find_by_id(req.path)
+      # elsif req.path.match(/exercises/) && req.patch?
+      #   exercise = Exercise.find_by_id(req.path)
 
-        if exercise
-          data = JSON.parse(req.body.read)
-          exercise.update(data)
+      #   if exercise
+      #     data = JSON.parse(req.body.read)
+      #     exercise.update(data)
           
-          resp.write({message: "exercise successfully updated", exercise: exercise})
-          resp.status = 200
-        else
-          resp.write "Invalid data"
-          resp.status = 422
-        end
+      #     resp.write({message: "exercise successfully updated", exercise: exercise})
+      #     resp.status = 200
+      #   else
+      #     resp.write "Invalid data"
+      #     resp.status = 422
+      #   end
       
       elsif req.path.match(/exercises/) && req.delete?
 
-      elsif req.path.match(/exercises/) && req.post?
-        exercise_hash = JSON.parse(req.body.read) 
-        exercise = Exercise.create(exercise_hash)
+        exercise = Exercise.find_by_path(req.path)
 
-        resp.write({message: "exercise successfully created", exercises: exercise}.to_json)
-        resp.status = 200
+        if exercise && exercise.destroy
+          resp.write({message: "exercise successfully deleted", exercise: exercise}.to_json)
+          resp.status = 200
+        else
+          resp.write "Exercise does not exist"
+          resp.status = 404
+        end
+
+      # elsif req.path.match(/exercises/) && req.post?
+      #   exercise_hash = JSON.parse(req.body.read) 
+      #   exercise = Exercise.create(exercise_hash)
+
+      #   resp.write({message: "exercise successfully created", exercises: exercise}.to_json)
+      #   resp.status = 200
 
       elsif req.path.match(/exercises/) && req.get?
-        resp.write({message: "success", exercises: Exercise.render_all}.to_json)  #change to find by path when routes are setup
+        resp.write({message: "success", exercises: Exercise.render_all}.to_json)
         resp.status = 200
       else
         resp.write "Route not found"

@@ -1,4 +1,5 @@
 class Workout < ActiveRecord::Base
+    #dependent attribute will make it so that any exercises associated with a particular instance of a workout will be deleted along with the workout
     has_many :exercises, dependent: :destroy
 
     def self.render_all

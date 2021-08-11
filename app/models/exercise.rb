@@ -15,6 +15,6 @@ class Exercise < ActiveRecord::Base
 
      def self.find_by_path(path)
         id = path.split("/exercises/")[1].to_i
-        Exercise.all.where("id = #{id}")
+        Exercise.find_by_id(id)
      end
 end
