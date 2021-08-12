@@ -3,21 +3,21 @@ class Application
       resp = Rack::Response.new
       req = Rack::Request.new(env)
   
-      if req.path.match(/workouts/) && req.patch?    #/workout/:id
-        workout = Workout.find_by_path(req.path)
+      # if req.path.match(/workouts/) && req.patch?    #/workout/:id
+      #   workout = Workout.find_by_path(req.path)
 
-        if workout
-          data = JSON.parse(req.body.read)
-          workout.update(data)
+      #   if workout
+      #     data = JSON.parse(req.body.read)
+      #     workout.update(data)
 
-          resp.write({message: "workout successfully updated", workout: workout})
-          resp.status = 200
-        else
-          resp.write "Invalid data"
-          resp.status = 422
-        end
+      #     resp.write({message: "workout successfully updated", workout: workout})
+      #     resp.status = 200
+      #   else
+      #     resp.write "Invalid data"
+      #     resp.status = 422
+      #   end
 
-      elsif req.path.match(/workouts/) && req.delete?  #/workout/:id
+      if req.path.match(/workouts/) && req.delete?  #/workout/:id
        
         workout = Workout.find_by_path(req.path)
 
