@@ -17,4 +17,5 @@ class Exercise < ActiveRecord::Base
         id = path.split("/exercises/")[1].to_i
         Exercise.find_by_id(id)
      end
+
 end
